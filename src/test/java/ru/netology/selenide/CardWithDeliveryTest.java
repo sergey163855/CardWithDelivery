@@ -1,18 +1,16 @@
 package ru.netology.selenide;
 
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.locks.Condition;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Selenide.*;
-        
+
 public class CardWithDeliveryTest {
     private String generateDate(int addDays,String pattern) {
         return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
@@ -30,7 +28,8 @@ public class CardWithDeliveryTest {
         $("[data-test-id=agreement]").click();
         $("button.button").click();
         $("notification__content")
-                .shouldBe(Condition.visible, Duration.ofSeconds(25))
-                .shouldHave(Condition.exactText("Встреча успешно забронирована на " + currentDate));
+                .shouldBe(Condition.visible, Duration.ofSeconds(15))
+                .shouldHave(com.codeborne.selenide.Condition.exactText("Встреча успешно забронирована на" + currentDate));
     }
 }
+
