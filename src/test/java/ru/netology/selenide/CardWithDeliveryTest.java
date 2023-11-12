@@ -21,15 +21,15 @@ public class CardWithDeliveryTest {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Иркутск");
         String currentDate = generateDate(4,"dd.MM.yyyy");
-        $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME),Keys.DELETE);
-        $("[data-test-id=date] input").sendKeys(currentDate);
-        $("[data-test-id=name] input").setValue("Иванов Иван");
-        $("[data-test-id=phone] input").setValue("+79500000000");
-        $("[data-test-id=agreement]").click();
+        $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT,Keys.HOME),Keys.DELETE);
+        $("[data-test-id='date'] input").sendKeys(currentDate);
+        $("[data-test-id='name'] input").setValue("Иванов Иван");
+        $("[data-test-id='phone'] input").setValue("+79500000000");
+        $("[data-test-id='agreement']").click();
         $("button.button").click();
-        $("notification__content")
+        $(".notification__content")
                 .shouldBe(Condition.visible, Duration.ofSeconds(15))
-                .shouldHave(com.codeborne.selenide.Condition.exactText("Встреча успешно забронирована на" + currentDate));
+                .shouldHave(com.codeborne.selenide.Condition.exactText("Встреча успешно забронирована на " + currentDate));
     }
 }
 
